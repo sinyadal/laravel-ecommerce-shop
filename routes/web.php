@@ -11,20 +11,17 @@
 |
 */
 
-Route::redirect('/here', '/there');
+Auth::routes();
 
-// Route::get('/shop', function () {
-//     return view('shop');
-// });
+Route::redirect('/here', '/there');
 
 // Main pages
 Route::get('/', 'HomePageController@index')->name('home.index');
 Route::get('/shop', 'ShopPageController@index')->name('shop.index');
 Route::get('/shop/{product}', 'ShopPageController@show')->name('shop.show');
 
+// Cart
 Route::get('/cart', 'CartPageController@index')->name('cart.index');
-Route::post('/cart', 'CartPageController@store')->name('cart.store');
-
 Route::post('/cart/{product}/add', 'CartPageController@add')->name('cart.add');
 Route::delete('/cart/{product}/destroy', 'CartPageController@destroy')->name('cart.destroy');
 Route::post('cart/wishlist/{product}', 'CartPageController@wishlist')->name('cart.wishlist');
@@ -32,12 +29,7 @@ Route::post('cart/wishlist/{product}', 'CartPageController@wishlist')->name('car
 Route::delete('/wishlist/{product}/destroy', 'WishlistController@destroy')->name('wishlist.destroy');
 Route::post('wishlist/wishlist/{product}', 'WishlistController@cart')->name('wishlist.cart');
 
-
-Auth::routes();
-
 Route::get('/home', 'DashboardController@index')->name('dashboard.index');
-
-
 
 // Route::get('/admin/tag/', 'TagController@index')                                    ->name('tag.index');
 // Route::post('/admin/tag/', 'TagController@store')                                   ->name('tag.store');
