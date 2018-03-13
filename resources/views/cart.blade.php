@@ -25,19 +25,24 @@
 
                 <table class="table">
                     <tbody>
-                        @foreach(Cart::content() as $cartItem)
+                        @foreach(Cart::content() as $cart_item)
                         <tr>
                             <th scope="row">{{ $loop->iteration }}</th>
                             <td class="w-25">
-                                <a href="{{ route('shop.show', $cartItem->model->slug) }}">
-                                    <img class="img-fluid" src="{{ asset('img/products/' . $cartItem->model->slug . '.jpg') }}" alt="">
+                                <a href="{{ route('shop.show', $cart_item->model->slug) }}">
+                                    <img class="img-fluid" src="{{ asset('img/products/' . $cart_item->model->slug . '.jpg') }}" alt="">
                                 </a>
                             </td>
-                            <td>{{ $cartItem->model->name }}</td>
+                            <td>{{ $cart_item->model->name }}</td>
                             <td>
-                                <form action="{{ route('cart.destroy', $cartItem->rowId) }}" method="POST">
+                                <form action="{{ route('cart.destroy', $cart_item->rowId) }}" method="POST">
                                     @csrf @method('DELETE')
                                     <button type="submit" class="btn btn-link btn-sm">Remove X</button>
+                                </form>
+
+                                <form action="{{ route('cart.wishlist', $cart_item->rowId) }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="btn btn-link btn-sm">Add to Wishlist</button>
                                 </form>
                             </td>
                             <td>
@@ -48,7 +53,7 @@
                                 </select>
                             </td>
                             <td>
-                                <h5>{{ $cartItem->model->presentPrice() }}</h5>
+                                <h5>{{ $cart_item->model->presentPrice() }}</h5>
                             </td>
                         </tr>
                         @endforeach
@@ -86,10 +91,55 @@
                     </div>
 
                 @else
-                <h3>No items in your cart..</h3>
+                <h4 class="mt-5">No items in your cart..</h4>
                 <a href="{{ route('shop.index') }}" class="btn btn-warning btn-lg mt-3">Continue Shopping!</a>
                 @endif
+            </div>
 
+
+            <div class="mt-4">
+                @if(Cart::instance('wishlist')->count() > 0)
+                <h4 class="mb-5 mt-5">{{ Cart::instance('wishlist')->count() }} item(s) in Wish List</h4>
+                <table class="table">
+                    <tbody>
+                        @foreach(Cart::instance('wishlist')->content() as $wishlist_item)
+                        <tr>
+                            <th scope="row">{{ $loop->iteration }}</th>
+                            <td class="w-25">
+                                <a href="{{ route('shop.show', $wishlist_item->model->slug) }}">
+                                    <img class="img-fluid" src="{{ asset('img/products/' . $wishlist_item->model->slug . '.jpg') }}" alt="">
+                                </a>
+                            </td>
+                            <td>{{ $wishlist_item->model->name }}</td>
+                            <td>
+                                <form action="{{ route('wishlist.destroy', $wishlist_item->rowId) }}" method="POST">
+                                    @csrf @method('DELETE')
+                                    <button type="submit" class="btn btn-link btn-sm">Remove X</button>
+                                </form>
+
+                                <form action="{{ route('wishlist.cart', $wishlist_item->rowId) }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="btn btn-link btn-sm">Add to Cart</button>
+                                </form>
+                            </td>
+                            <td>
+                                <select class="custom-select" id="inlineFormCustomSelect">
+                                    <option value="1" selected>1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
+                            </td>
+                            <td>
+                                <h5>{{ $wishlist_item->model->presentPrice() }}</h5>
+                            </td>
+                        </tr>
+                        @endforeach
+
+                    </tbody>
+                </table>
+                @else
+                <h4 class="mt-5">No items in your wishlist..</h4>
+                @endif
             </div>
         </div>
     </div>

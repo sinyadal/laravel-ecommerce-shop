@@ -24,10 +24,17 @@ Route::get('/shop/{product}', 'ShopPageController@show')->name('shop.show');
 
 Route::get('/cart', 'CartPageController@index')->name('cart.index');
 Route::post('/cart', 'CartPageController@store')->name('cart.store');
+
+Route::get('/empty', function(){
+    Cart::instance('wishlist')->destroy();
+});
 Route::post('/cart/{product}/add', 'CartPageController@store')->name('cart.store');
 Route::delete('/cart/{product}/destroy', 'CartPageController@destroy')->name('cart.destroy');
 
+Route::post('cart/wishlist/{product}', 'CartPageController@wishlist')->name('cart.wishlist');
 
+Route::delete('/wishlist/{product}/destroy', 'WishlistController@destroy')->name('wishlist.destroy');
+Route::post('wishlist/wishlist/{product}', 'WishlistController@cart')->name('wishlist.cart');
 
 
 Auth::routes();
