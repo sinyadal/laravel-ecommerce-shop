@@ -37,7 +37,7 @@
                             <td>
                                 <form action="{{ route('cart.destroy', $cart_item->rowId) }}" method="POST">
                                     @csrf @method('DELETE')
-                                    <button type="submit" class="btn btn-link btn-sm">Remove X</button>
+                                    <button type="submit" class="btn btn-link btn-sm">Remove</button>
                                 </form>
 
                                 <form action="{{ route('cart.wishlist', $cart_item->rowId) }}" method="POST">
@@ -114,7 +114,7 @@
                             <td>
                                 <form action="{{ route('wishlist.destroy', $wishlist_item->rowId) }}" method="POST">
                                     @csrf @method('DELETE')
-                                    <button type="submit" class="btn btn-link btn-sm">Remove X</button>
+                                    <button type="submit" class="btn btn-link btn-sm">Remove</button>
                                 </form>
 
                                 <form action="{{ route('wishlist.cart', $wishlist_item->rowId) }}" method="POST">
