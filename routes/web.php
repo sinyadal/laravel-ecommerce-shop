@@ -11,9 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::redirect('/here', '/there', 301);
+
+// Route::get('/', function () {
+//     return view('home-page');
+// });
+
+Route::get('/', 'HomePageController@index')->name('homepage.index');
 
 Auth::routes();
 
