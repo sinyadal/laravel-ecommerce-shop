@@ -10,17 +10,36 @@
             </li>
         </ol>
     </nav>
+
+    @if(Session::has('success'))
+    <div class="alert alert-success" role="alert">
+        {{ Session::get('success') }}
+    </div>
+    @endif
+
     <div class="row">
         <div class="col-md-9">
-            <div class="mt-5">
-                <h2 class="mb-5">3 items in Shopping Cart</h2>
+            <div class="mt-4">
+                @if(Cart::count() > 0)
+                <h2 class="mb-5">{{ Cart::count() }} item(s) in Shopping Cart</h2>
+
                 <table class="table">
                     <tbody>
+                        @foreach(Cart::content() as $cartItem)
                         <tr>
-                            <th scope="row">1</th>
-                            <td class="w-25"><img class="img-fluid" src="https://goo.gl/Csqikm" alt=""></td>
-                            <td>Otto</td>
-                            <td> </td>
+                            <th scope="row">{{ $loop->iteration }}</th>
+                            <td class="w-25">
+                                <a href="{{ route('shop.show', $cartItem->model->slug) }}">
+                                    <img class="img-fluid" src="{{ asset('img/products/' . $cartItem->model->slug . '.jpg') }}" alt="">
+                                </a>
+                            </td>
+                            <td>{{ $cartItem->model->name }}</td>
+                            <td>
+                                <form action="{{ route('cart.destroy', $cartItem->rowId) }}" method="POST">
+                                    @csrf @method('DELETE')
+                                    <button type="submit" class="btn btn-link btn-sm">Remove X</button>
+                                </form>
+                            </td>
                             <td>
                                 <select class="custom-select" id="inlineFormCustomSelect">
                                     <option value="1" selected>1</option>
@@ -28,38 +47,48 @@
                                     <option value="3">3</option>
                                 </select>
                             </td>
-                            <td><h5>$2031.99</h5></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td class="w-25"><img class="img-fluid" src="https://goo.gl/Csqikm" alt=""></td>
-                            <td>Thornton</td>
-                            <td>Mekbuk Pro</td>
                             <td>
-                                <select class="custom-select" id="inlineFormCustomSelect">
-                                    <option value="1" selected>1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                </select>
+                                <h5>{{ $cartItem->model->price }}</h5>
                             </td>
-                            <td><h5>$2031.99</h5></td>
                         </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td class="w-25"><img class="img-fluid" src="https://goo.gl/Csqikm" alt=""></td>
-                            <td>Mekbuk Pro</td>
-                            <td>Mekbuk Pro</td>
-                            <td>
-                                <select class="custom-select" id="inlineFormCustomSelect">
-                                    <option value="1" selected>1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                </select>
-                            </td>
-                            <td><h5>$2031.99</h5></td>
-                        </tr>
+                        @endforeach
+
                     </tbody>
                 </table>
+
+                <div>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nesciunt accusantium iusto
+                                            eligendi quae consectetur voluptate hic ratione, minima error totam.</p>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <p>Subtotal: <span class="float-right"> {{ Cart::subtotal() }}</span></p>
+                                        {{--  @php
+                                            $number = Cart::subtotal();
+                                            setlocale(LC_MONETARY, 'en_US');
+                                            echo money_format('%i', $number) . "\n";
+                                            // USD 1,234.56
+                                        @endphp  --}}
+                                        <p>Tax: <span class="float-right"> {{ Cart::tax() }}</span></p>
+                                        <p class="font-weight-bold lead">Total: <span class="float-right"> {{ Cart::total() }}</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <a href="" class="btn btn-primary btn-lg">Continue Shopping..</a>
+                            <a href="" class="btn btn-warning btn-lg float-right">Go to Checkout</a>
+                        </div>
+                    </div>
+
+                @else
+                <h3>No items in your cart..</h3>
+                <a href="{{ route('shop.index') }}" class="btn btn-warning btn-lg mt-3">Continue Shopping!</a>
+                @endif
+
             </div>
         </div>
     </div>
@@ -76,7 +105,7 @@
                     </a>
                     <div class="card-body">
                         <h5 class="card-title">{{ $suggested_product->name }}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">{{ $suggested_product->presentPrice() }}</h6>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ $suggested_product->price }}</h6>
                         <p class="card-text">{{ $suggested_product->details }}</p>
                     </div>
                 </div>

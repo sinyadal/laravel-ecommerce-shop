@@ -37,7 +37,11 @@
                     <ul class="navbar-nav ml-auto">
                         @guest
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('cart.index') }}">Cart</a>
+                            <a class="nav-link" href="{{ route('cart.index') }}">Cart 
+                                @if(Cart::instance('default')->count() > 0)
+                                <span class="badge badge-warning">{{ Cart::instance('default')->count() }}</span>                            
+                                @endif
+                            </a>
                         </li>
                         <li>
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -47,7 +51,11 @@
                         </li>
                         @else
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('cart.index') }}">Cart</a>
+                        <a class="nav-link" href="{{ route('cart.index') }}">Cart 
+                            @if(Cart::instance('default')->count() > 0)
+                            <span class="badge badge-warning">{{ Cart::instance('default')->count() }}</span>                            
+                            @endif
+                        </a>
                         </li>
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
