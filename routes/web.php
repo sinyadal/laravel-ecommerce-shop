@@ -13,14 +13,14 @@
 
 Route::redirect('/here', '/there');
 
-Route::get('/shop', function () {
-    return view('shop');
-});
+// Route::get('/shop', function () {
+//     return view('shop');
+// });
 
 // Main pages
-Route::get('/', 'HomePageController@index')->name('homepage.index');
+Route::get('/', 'HomePageController@index')->name('home.index');
 Route::get('/shop', 'ShopPageController@index')->name('shop.index');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'DashboardController@index')->name('dashboard.index');

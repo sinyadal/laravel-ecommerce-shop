@@ -10,6 +10,6 @@ class HomePageController extends Controller
     public function index()
     {
         $products = Product::inRandomOrder()->take(8)->get();
-        return view('home-page', compact('products'));
+        return view('home', compact('products'));
     }
 }
