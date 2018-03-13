@@ -20,14 +20,11 @@
                 <div class="card-body">
                     <h1 class="mb-4">{{ $single_product->name }}</h1>
                     <p class="lead">{{ $single_product->details }}</p>
-                    <h2 class="mb-3">{{ $single_product->price }}</h2>
+                    <h2 class="mb-3">{{ $single_product->presentPrice() }}</h2>
                     <p>{{ $single_product->description }}</p>
                     {{--  <a href="" class="btn btn-outline-warning btn-lg">Add to Cart!</a>  --}}
-                    <form action="{{ route('cart.store') }}" method="POST">
+                    <form action="{{ route('cart.store', $single_product->id) }}" method="POST">
                         @csrf
-                        <input type="hidden" name="id" value="{{ $single_product->id }}">
-                        <input type="hidden" name="name" value="{{ $single_product->name }}">
-                        <input type="hidden" name="price" value="{{ $single_product->price }}">
                         <button type="submit" class="btn btn-outline-warning btn-lg">Add to Cart!</button>
                     </form>
                 </div>
@@ -47,7 +44,7 @@
                     </a>
                     <div class="card-body">
                         <h5 class="card-title">{{ $suggested_product->name }}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">{{ $suggested_product->price }}</h6>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ $suggested_product->presentPrice() }}</h6>
                         <p class="card-text">{{ $suggested_product->details }}</p>
                     </div>
                 </div>

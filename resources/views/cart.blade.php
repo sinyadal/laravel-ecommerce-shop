@@ -48,7 +48,7 @@
                                 </select>
                             </td>
                             <td>
-                                <h5>{{ $cartItem->model->price }}</h5>
+                                <h5>{{ $cartItem->model->presentPrice() }}</h5>
                             </td>
                         </tr>
                         @endforeach
@@ -65,21 +65,22 @@
                                             eligendi quae consectetur voluptate hic ratione, minima error totam.</p>
                                     </div>
                                     <div class="col-md-4">
-                                        <p>Subtotal: <span class="float-right"> {{ Cart::subtotal() }}</span></p>
-                                        {{--  @php
-                                            $number = Cart::subtotal();
-                                            setlocale(LC_MONETARY, 'en_US');
-                                            echo money_format('%i', $number) . "\n";
-                                            // USD 1,234.56
-                                        @endphp  --}}
-                                        <p>Tax: <span class="float-right"> {{ Cart::tax() }}</span></p>
-                                        <p class="font-weight-bold lead">Total: <span class="float-right"> {{ Cart::total() }}</span></p>
+                                        @php
+                                        function presentPrice($price){
+                                            // Format $price to ms_my currency
+                                            setlocale(LC_MONETARY, 'ms_MY');
+                                            return money_format('%i', $price) . "\n";
+                                        }
+                                        @endphp
+                                        <p>Subtotal: <span class="float-right"> {{ presentPrice(Cart::subtotal()) }}</span></p>
+                                        <p>Tax: (6%) <span class="float-right"> {{ presentPrice(Cart::tax()) }}</span></p>
+                                        <p class="font-weight-bold lead">Total: <span class="float-right"> {{ presentPrice(Cart::total()) }}</span></p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="mt-4">
-                            <a href="" class="btn btn-primary btn-lg">Continue Shopping..</a>
+                            <a href="{{ route('shop.index') }}" class="btn btn-primary btn-lg">Continue Shopping..</a>
                             <a href="" class="btn btn-warning btn-lg float-right">Go to Checkout</a>
                         </div>
                     </div>
@@ -105,7 +106,7 @@
                     </a>
                     <div class="card-body">
                         <h5 class="card-title">{{ $suggested_product->name }}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">{{ $suggested_product->price }}</h6>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ $suggested_product->presentPrice() }}</h6>
                         <p class="card-text">{{ $suggested_product->details }}</p>
                     </div>
                 </div>
