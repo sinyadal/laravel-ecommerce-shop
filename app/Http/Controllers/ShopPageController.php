@@ -14,7 +14,9 @@ class ShopPageController extends Controller
     }
     public function show($slug)
     {
-        $product = Product::where('slug', $slug)->firstOrFail();
-        return view('product', compact('product'));        
+        $single_product = Product::where('slug', $slug)->firstOrFail();
+        $suggested_products = Product::where('slug', '!=', $slug)->productSuggestion()->get();
+        
+        return view('product', compact('single_product', 'suggested_products'));        
     }
 }

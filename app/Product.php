@@ -12,4 +12,10 @@ class Product extends Model
         return money_format('RM%i', $this->price / 100);
         // {{ $product->presentPrice() }}
     }
+
+    // Scope
+    public function scopeProductSuggestion($query)
+    {
+        return $query->inRandomOrder()->take(4);
+    }
 }

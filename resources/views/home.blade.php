@@ -14,8 +14,7 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ $product->name }}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">{{ $product->presentPrice() }}</h6>
-                            <p class="card-text">{{ $product->details }}
-                            </p>
+                            <p class="card-text">{{ $product->details }}</p>
                             <a href="{{ route('shop.show', $product->slug) }}" class="btn btn-warning text-white btn-sm">Buy!</a>
                             <a href="#" class="btn btn-info btn-sm disabled float-right">{{ $loop->iteration }}/{{ $loop->count }}</a>
                         </div>

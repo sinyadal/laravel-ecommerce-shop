@@ -7,10 +7,10 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb bg-white border">
             <li class="breadcrumb-item">
-                <a href="#">Home</a>
+                <a href="{{ route('home.index') }}">Home</a>
             </li>
             <li class="breadcrumb-item">
-                <a href="#">Product</a>
+                <a href="{{ route('shop.index') }}">Shop</a>
             </li>
             <li class="breadcrumb-item active" aria-current="page">Laptop 1</li>
         </ol>
@@ -44,8 +44,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title">{{ $product->name }}</h5>
                                     <h6 class="card-subtitle mb-2 text-muted">{{ $product->presentPrice() }}</h6>
-                                    <p class="card-text">{{ $product->details }}
-                                    </p>
+                                    <p class="card-text">{{ $product->details }}</p>
                                     <a href="{{ route('shop.show', $product->slug) }}" class="btn btn-warning text-white btn-sm">Buy!</a>
                                     <a href="#" class="btn btn-info btn-sm float-right disabled">{{ $loop->iteration }}/{{ $loop->count }}</a>
                                 </div>
