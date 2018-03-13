@@ -17,5 +17,6 @@ class Product extends Model
     public function scopeProductSuggestion($query)
     {
         return $query->inRandomOrder()->take(4);
+        // Product::find($id)->productSuggestion()->get();
     }
 }

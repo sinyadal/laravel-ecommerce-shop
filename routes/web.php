@@ -21,7 +21,7 @@ Route::redirect('/here', '/there');
 Route::get('/', 'HomePageController@index')->name('home.index');
 Route::get('/shop', 'ShopPageController@index')->name('shop.index');
 Route::get('/shop/{product}', 'ShopPageController@show')->name('shop.show');
-// Route::get('/shop/{product}', 'ShopPageController@show')->name('shop.show');
+Route::get('/cart', 'CartPageController@index')->name('cart.index');
 
 
 

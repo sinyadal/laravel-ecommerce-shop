@@ -37,7 +37,7 @@
                     <ul class="navbar-nav ml-auto">
                         @guest
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Cart</a>
+                            <a class="nav-link" href="{{ route('cart.index') }}">Cart</a>
                         </li>
                         <li>
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -47,7 +47,7 @@
                         </li>
                         @else
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Cart</a>
+                            <a class="nav-link" href="{{ route('cart.index') }}">Cart</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
