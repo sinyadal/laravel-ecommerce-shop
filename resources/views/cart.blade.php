@@ -18,7 +18,7 @@
     @endif
 
     <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-12">
             <div class="mt-4">
                 @if(Cart::count() > 0)
                 <h2 class="mb-5">{{ Cart::count() }} item(s) in Shopping Cart</h2>
@@ -62,40 +62,38 @@
                 </table>
 
                 <div>
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-8">
-                                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nesciunt accusantium iusto
-                                            eligendi quae consectetur voluptate hic ratione, minima error totam.</p>
-                                    </div>
-                                    <div class="col-md-4">
-                                        @php
-                                        function presentPrice($price){
-                                            // Format $price to ms_my currency
-                                            setlocale(LC_MONETARY, 'ms_MY');
-                                            return money_format('%i', $price) . "\n";
-                                        }
-                                        @endphp
-                                        <p>Subtotal: <span class="float-right"> {{ presentPrice(Cart::subtotal()) }}</span></p>
-                                        <p>Tax: (6%) <span class="float-right"> {{ presentPrice(Cart::tax()) }}</span></p>
-                                        <p class="font-weight-bold lead">Total: <span class="float-right"> {{ presentPrice(Cart::total()) }}</span></p>
-                                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nesciunt accusantium iusto
+                                        eligendi quae consectetur voluptate hic ratione, minima error totam.</p>
+                                </div>
+                                <div class="col-md-4">
+                                    @php
+                                    function presentPrice($price){
+                                        // Format $price to ms_my currency
+                                        setlocale(LC_MONETARY, 'ms_MY');
+                                        return money_format('%i', $price) . "\n";
+                                    }
+                                    @endphp
+                                    <p>Subtotal: <span class="float-right"> {{ presentPrice(Cart::subtotal()) }}</span></p>
+                                    <p>Tax: (6%) <span class="float-right"> {{ presentPrice(Cart::tax()) }}</span></p>
+                                    <p class="font-weight-bold lead">Total: <span class="float-right"> {{ presentPrice(Cart::total()) }}</span></p>
                                 </div>
                             </div>
                         </div>
-                        <div class="mt-4">
-                            <a href="{{ route('shop.index') }}" class="btn btn-primary btn-lg">Continue Shopping..</a>
-                            <a href="" class="btn btn-warning btn-lg float-right">Go to Checkout</a>
-                        </div>
                     </div>
-
+                    <div class="mt-4">
+                        <a href="{{ route('shop.index') }}" class="btn btn-primary btn-lg">Continue Shopping..</a>
+                        <a href="" class="btn btn-warning btn-lg float-right">Go to Checkout</a>
+                    </div>
+                </div>
                 @else
                 <h4 class="mt-5">No items in your cart..</h4>
                 <a href="{{ route('shop.index') }}" class="btn btn-warning btn-lg mt-3">Continue Shopping!</a>
                 @endif
             </div>
-
 
             <div class="mt-4">
                 @if(Cart::instance('wishlist')->count() > 0)
@@ -116,7 +114,6 @@
                                     @csrf @method('DELETE')
                                     <button type="submit" class="btn btn-link btn-sm">Remove</button>
                                 </form>
-
                                 <form action="{{ route('wishlist.cart', $wishlist_item->rowId) }}" method="POST">
                                     @csrf
                                     <button type="submit" class="btn btn-link btn-sm">Add to Cart</button>
@@ -134,7 +131,6 @@
                             </td>
                         </tr>
                         @endforeach
-
                     </tbody>
                 </table>
                 @else
