@@ -9,7 +9,7 @@ class ShopPageController extends Controller
 {
     public function index()
     {
-        $products = Product::inRandomOrder()->take(12)->get();
+        $products = Product::inRandomOrder()->take(8)->get();
         return view('shop', compact('products'));
     }
     public function show($slug)

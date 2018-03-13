@@ -15,12 +15,17 @@ class CartPageController extends Controller
         return view('cart', compact('suggested_products')); 
     }
 
-    public function store(Request $request) 
+    public function store($id) 
     {
-        Cart::add($request->id, $request->name, 1, $request->price)->associate('App\Product');
+        $product = Product::find($id);
+        Cart::add([
+            'id' => $product->id,
+            'name' => $product->name,
+            'qty' => 1,
+            'price' => $product->price,
+        ])->associate('App\Product');
         Session::flash('success', 'Item has been added to your cart!');
         return redirect()->route('cart.index');
-        // Cart::add(['id' => '293ad', 'name' => 'Product 1', 'qty' => 1, 'price' => 9.99, 'options' => ['size' => 'large']]);
     }
 
     public function destroy($id) 
