@@ -1,12 +1,25 @@
 @extends('layouts.app') @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-12">
+    <div class="row">
+        <div class="col-md-4">
             <div class="card">
-                <div class="card-header bg-white">Homepage</div>
+                <div class="card-header bg-white">Category</div>
                 <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Cras justo odio</li>
+                        <li class="list-group-item">Dapibus ac facilisis in</li>
+                        <li class="list-group-item">Vestibulum at eros</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-white">Shop</div>
+                <div class="card-body">
                     <div class="row">
+
                         @foreach($products as $product)
                         <div class="col-md-4">
                             <div class="card mb-4">
@@ -22,9 +35,8 @@
                             </div>
                         </div>
                         @endforeach
-                       
-                    </div>
 
+                    </div>
                 </div>
             </div>
         </div>

@@ -11,13 +11,15 @@
 |
 */
 
-Route::redirect('/here', '/there', 301);
+Route::redirect('/here', '/there');
 
-// Route::get('/', function () {
-//     return view('home-page');
-// });
+Route::get('/shop', function () {
+    return view('shop');
+});
 
+// Main pages
 Route::get('/', 'HomePageController@index')->name('homepage.index');
+Route::get('/shop', 'ShopPageController@index')->name('shop.index');
 
 Auth::routes();
 
