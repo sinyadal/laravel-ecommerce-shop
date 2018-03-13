@@ -15,7 +15,7 @@ class CartPageController extends Controller
         return view('cart', compact('suggested_products')); 
     }
 
-    public function store($id) 
+    public function add($id) 
     {   
         // Present row..
         $product = Product::find($id);

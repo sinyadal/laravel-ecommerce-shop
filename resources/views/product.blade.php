@@ -23,7 +23,7 @@
                     <h2 class="mb-3">{{ $single_product->presentPrice() }}</h2>
                     <p>{{ $single_product->description }}</p>
                     {{--  <a href="" class="btn btn-outline-warning btn-lg">Add to Cart!</a>  --}}
-                    <form action="{{ route('cart.store', $single_product->id) }}" method="POST">
+                    <form action="{{ route('cart.add', $single_product->id) }}" method="POST">
                         @csrf
                         <button type="submit" class="btn btn-outline-warning btn-lg">Add to Cart!</button>
                     </form>
