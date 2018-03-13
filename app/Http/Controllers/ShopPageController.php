@@ -12,4 +12,9 @@ class ShopPageController extends Controller
         $products = Product::inRandomOrder()->take(12)->get();
         return view('shop', compact('products'));
     }
+    public function show($slug)
+    {
+        $product = Product::where('slug', $slug)->firstOrFail();
+        return view('product', compact('product'));        
+    }
 }
