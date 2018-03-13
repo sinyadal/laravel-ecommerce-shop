@@ -17,7 +17,7 @@
     </nav>
     <div class="row">
         <div class="col-md-6">
-            <img src="https://goo.gl/Csqikm" alt="" class="img-fluid rounded">
+            <img src="{{ asset('img/products/' . $product->slug . '.jpg') }}" alt="" class="img-fluid rounded">
         </div>
         <div class="col-md-6">
             <div class="card mb-3">

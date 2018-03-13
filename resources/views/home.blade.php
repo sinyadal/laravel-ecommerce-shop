@@ -9,7 +9,7 @@
                 <div class="col-md-4">
                     <div class="card mb-4">
                         <a href="{{ route('shop.show', $product->slug) }}">
-                            <img class="card-img-top" src="https://goo.gl/Csqikm" alt="">
+                            <img class="card-img-top" src="{{ asset('img/products/' . $product->slug . '.jpg') }}" alt="">
                         </a>
                         <div class="card-body">
                             <h5 class="card-title">{{ $product->name }}</h5>
