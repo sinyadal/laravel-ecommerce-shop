@@ -140,6 +140,7 @@
         </div>
     </div>
 </div>
+
 <div class="jumbotron jumbotron-fluid mt-5 mb-0">
     <div class="container">
         <h4 class="mb-4">You might also like..</h4>
