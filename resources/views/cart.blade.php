@@ -46,7 +46,7 @@
                                 </form>
                             </td>
                             <td>
-                                <select class="custom-select" id="inlineFormCustomSelect">
+                                <select class="quantity custom-select" id="inlineFormCustomSelect">
                                     <option value="1" selected>1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -165,10 +165,20 @@
 @endsection
 
 @section('scripts')
-
+<script src="{{ asset('js/app.js') }}"></script>
 <script>
-    (function() {
-        alert('hi');
-    })();
+    (function(){
+        
+            const className = document.querySelectorAll('.quantity')
+            Array.from(className).forEach(function(element) {
+                element.addEventListener('change', function() {
+                    alert('changed');
+                    // const id = element.getAttribute('data-id')
+                    // axios.patch(`/cart/${id}`, {
+                    //     quantity: this.value
+                    // })
+                })
+            })
+        })();
 </script>
 @endsection
