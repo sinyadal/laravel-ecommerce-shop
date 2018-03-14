@@ -1,4 +1,12 @@
-@extends('layouts.app') @section('title', 'Home') @section('content')
+@extends('layouts.app') 
+
+@section('title', 'Home') 
+
+@section('styles')
+<script src=""></script>
+@endsection
+
+@section('content')
 <div class="container">
     <div>
         <h1 class="mb-4 mt-3">Checkout</h1>
@@ -53,10 +61,6 @@
                             <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
                         </div>
                         <div class="form-group">
-                            <label for="">Address</label>
-                            <input type="text" class="form-control" id="" placeholder="name@domain.com">
-                        </div>
-                        <div class="form-group">
                                 <label for="">Card Number</label>
                                 <input type="text" class="form-control" id="" placeholder="name@domain.com">
                             </div>
@@ -70,7 +74,7 @@
                                 <input type="text" class="form-control" id="inputZip">
                             </div>
                         </div>
-                        <button class="btn btn-success btn-lg btn-block">Complete Order</button>
+                        <button class="btn btn-success btn-lg btn-block mt-3">Complete Order</button>
                     </form>
 
 
