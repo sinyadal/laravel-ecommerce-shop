@@ -1,12 +1,4 @@
-@extends('layouts.app') 
-
-@section('title', 'Home') 
-
-@section('styles')
-<script src=""></script>
-@endsection
-
-@section('content')
+@extends('layouts.app') @section('title', 'Home') @section('content')
 <div class="container">
     <div>
         <h1 class="mb-4 mt-3">Checkout</h1>
@@ -14,7 +6,7 @@
     <div class="row">
         <div class="col-md-7">
             <div class="card mb-4">
-                <div class="card-body bg-primary text-white">
+                <div class="card-body">
                     <h3>Billing Details</h3>
 
                     <form>
@@ -53,7 +45,8 @@
                         </div>
                     </form>
 
-                    <h3 class="mt-5">Payment Details</h3>
+                    <hr>
+                    <h3 class="mt-3">Payment Details</h3>
 
                     <form>
                         <div class="form-group">
