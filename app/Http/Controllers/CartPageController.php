@@ -67,4 +67,9 @@ class CartPageController extends Controller
         Session::flash('success', 'Item has been added to your wishlist!');
         return redirect()->route('cart.index');
     }
+
+    public function update(Request $request, $id)
+    {
+        return $request->all(); 
+    }
 }
