@@ -70,6 +70,8 @@ class CartPageController extends Controller
 
     public function update(Request $request, $id)
     {
-        return $request->all(); 
+        Cart::update($id, $request->quantity);
+        Session::flash('success', 'Quantity updated!');
+        return response()->json(['success' => true]);
     }
 }
