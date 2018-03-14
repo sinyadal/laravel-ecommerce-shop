@@ -163,3 +163,12 @@
     </div>
 </div>
 @endsection
+
+@section('scripts')
+
+<script>
+    (function() {
+        alert('hi');
+    })();
+</script>
+@endsection
