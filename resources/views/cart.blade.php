@@ -86,7 +86,7 @@
                     </div>
                     <div class="mt-4">
                         <a href="{{ route('shop.index') }}" class="btn btn-primary btn-lg">Continue Shopping..</a>
-                        <a href="" class="btn btn-warning btn-lg float-right">Go to Checkout</a>
+                        <a href="{{ route('checkout.index') }}" class="btn btn-warning btn-lg float-right">Go to Checkout</a>
                     </div>
                 </div>
                 @else
