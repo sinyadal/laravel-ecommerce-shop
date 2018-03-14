@@ -46,7 +46,7 @@
                                 </form>
                             </td>
                             <td>
-                                <select class="quantity custom-select" id="inlineFormCustomSelect">
+                                <select data-id="{{ $cart_item->rowId }}" class="quantity custom-select" id="inlineFormCustomSelect">
                                     <option value="1" selected>1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -172,7 +172,16 @@
             const className = document.querySelectorAll('.quantity')
             Array.from(className).forEach(function(element) {
                 element.addEventListener('change', function() {
-                    alert('changed');
+                    const id = element.getAttribute('data-id')
+                    axios.patch(`/cart/${id}/update`, {
+                        quantity: this.value
+                    })
+                    .then(function (response) {
+                        console.log(response);
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
                     // const id = element.getAttribute('data-id')
                     // axios.patch(`/cart/${id}`, {
                     //     quantity: this.value

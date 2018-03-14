@@ -23,7 +23,7 @@ Route::get('/shop/{product}', 'ShopPageController@show')->name('shop.show');
 // Cart
 Route::get('/cart', 'CartPageController@index')->name('cart.index');
 Route::post('/cart/{product}/add', 'CartPageController@add')->name('cart.add');
-Route::post('/cart/{product}/update', 'CartPageController@update')->name('cart.update');
+Route::patch('/cart/{product}/update', 'CartPageController@update')->name('cart.update');
 Route::delete('/cart/{product}/destroy', 'CartPageController@destroy')->name('cart.destroy');
 Route::post('cart/wishlist/{product}', 'CartPageController@wishlist')->name('cart.wishlist');
 
