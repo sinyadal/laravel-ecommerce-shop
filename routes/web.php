@@ -29,6 +29,8 @@ Route::post('cart/wishlist/{product}', 'CartPageController@wishlist')->name('car
 Route::delete('/wishlist/{product}/destroy', 'WishlistController@destroy')->name('wishlist.destroy');
 Route::post('wishlist/wishlist/{product}', 'WishlistController@cart')->name('wishlist.cart');
 
+Route::get('/checkout', 'CheckoutPageController@index')->name('checkout.index');
+
 Route::get('/home', 'DashboardController@index')->name('dashboard.index');
 
 // Route::get('/admin/tag/', 'TagController@index')                                    ->name('tag.index');
