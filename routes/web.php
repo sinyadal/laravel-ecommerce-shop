@@ -25,12 +25,14 @@ Route::get('/cart', 'CartPageController@index')->name('cart.index');
 Route::post('/cart/{product}/add', 'CartPageController@add')->name('cart.add');
 Route::patch('/cart/{product}/update', 'CartPageController@update')->name('cart.update');
 Route::delete('/cart/{product}/destroy', 'CartPageController@destroy')->name('cart.destroy');
-Route::post('cart/wishlist/{product}', 'CartPageController@wishlist')->name('cart.wishlist');
+Route::post('/cart/wishlist/{product}', 'CartPageController@wishlist')->name('cart.wishlist');
 
 Route::delete('/wishlist/{product}/destroy', 'WishlistController@destroy')->name('wishlist.destroy');
-Route::post('wishlist/wishlist/{product}', 'WishlistController@cart')->name('wishlist.cart');
+Route::post('/wishlist/wishlist/{product}', 'WishlistController@cart')->name('wishlist.cart');
 
-Route::get('/checkout', 'CheckoutPageController@index')->name('checkout.index');
+Route::get('/cart/checkout', 'CheckoutPageController@index')->name('checkout.index');
+
+Route::get('/cart/checkout/thank-you', 'CheckoutPageController@thankYou')->name('checkout.thank.you');
 
 Route::get('/home', 'DashboardController@index')->name('dashboard.index');
 
