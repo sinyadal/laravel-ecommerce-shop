@@ -12,8 +12,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            ProductsTableSeeder::class,
             CategoriesTableSeeder::class,
+            ProductsTableSeeder::class,
             // Relay -> php artisan make:migration create_category_product_table --create=category_product, Relay
         ]);
     }
