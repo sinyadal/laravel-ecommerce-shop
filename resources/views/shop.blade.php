@@ -32,7 +32,7 @@
 
         <div class="col-md-9">
             <div class="card mb-3">
-                <div class="card-header bg-white"><strong>Shop - {{ $category_name }}</strong>
+                <div class="card-header bg-white"><strong>Shop - {{ @$category_name }}</strong>
                     <span class="float-right"><strong>Price: </strong>
                         <a href="{{ route('shop.index', ['category' => request()->category, 'price_sort' => 'low_high']) }}">Low to High</a> |
                         <a href="{{ route('shop.index', ['category' => request()->category, 'price_sort' => 'high_low']) }}">High to Low</a>                    
@@ -63,6 +63,7 @@
                         @endforelse
 
                     </div>
+                    {{ $products->appends(request()->input())->links() }}
                 </div>
             </div>
         </div>

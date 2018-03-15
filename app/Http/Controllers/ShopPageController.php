@@ -10,22 +10,24 @@ class ShopPageController extends Controller
 {
     public function index()
     {
+        $categories = Category::all();
+        // Category filtering
         if (request()->category) { // If request has $category->slug passed, filter the query..
             $products = Product::with('categories')->whereHas('categories', function ($query) {
                 $query->where('slug', request()->category);
-            })->get();
-            $categories = Category::all();
-            $category_name = $categories->where('slug', request()->category)->first()->name;
+            });
+            $category_name = optional($categories->where('slug', request()->category)->first())->name;
         } else { // Just normal behavior
-            $products = Product::inRandomOrder()->take(8)->get();
-            $categories = Category::all();
+            $products = Product::where('featured', true);
             $category_name = 'Featured';
         }
-
+        // Price sorting
         if (request()->price_sort == 'low_high') { // If request has $category->slug passed, filter the query..
-            $products = $products->sortBy('price');
+            $products = $products->orderBy('price')->paginate(6);
         } elseif (request()->price_sort == 'high_low') {
-            $products = $products->sortByDesc('price');
+            $products = $products->orderBy('price', 'desc')->paginate(6);
+        } else {
+            $products = $products->paginate(6);
         }
         
         return view('shop', compact('products', 'categories', 'category_name'));
