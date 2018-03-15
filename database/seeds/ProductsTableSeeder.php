@@ -19,8 +19,11 @@ class ProductsTableSeeder extends Seeder
                 'details' => [13, 14, 15][array_rand([13, 14, 15])] . ' inch,' . [140, 320, 980][array_rand([140, 320, 980])] . ' GB SSD, 32GB RAM, Nvidia GTX 1080 Ti SLI.',
                 'price' => 1000.00,
                 'description' => 'Lorem ipsum ' . $i . ', dolor sit amet consectetur adipisicing elit. Architecto voluptatibus corrupti unde fugiat possimus ipsa accusantium magnam velit enim doloribus.',
-            ]);
+            ])->categories()->attach(1);
         }
+
+        $product = Product::find(1);
+        $product->categories()->attach(2);
 
         for ($i = 1; $i <= 5; $i++) {
             Product::create([
@@ -29,7 +32,7 @@ class ProductsTableSeeder extends Seeder
                 'details' => [13, 14, 15][array_rand([13, 14, 15])] . ' inch,' . [140, 320, 980][array_rand([140, 320, 980])] . ' GB SSD, 32GB RAM, Nvidia GTX 1080 Ti SLI.',
                 'price' => rand(1000.00, 7000.00),
                 'description' => 'Lorem ipsum ' . $i . ', dolor sit amet consectetur adipisicing elit. Architecto voluptatibus corrupti unde fugiat possimus ipsa accusantium magnam velit enim doloribus.',
-            ]);
+            ])->categories()->attach(2);
         }
 
         for ($i = 1; $i <= 5; $i++) {
@@ -39,7 +42,7 @@ class ProductsTableSeeder extends Seeder
                 'details' => [13, 14, 15][array_rand([13, 14, 15])] . ' inch,' . [140, 320, 980][array_rand([140, 320, 980])] . ' GB SSD, 32GB RAM, Nvidia GTX 1080 Ti SLI.',
                 'price' => rand(500.00, 1000.00),
                 'description' => 'Lorem ipsum ' . $i . ', dolor sit amet consectetur adipisicing elit. Architecto voluptatibus corrupti unde fugiat possimus ipsa accusantium magnam velit enim doloribus.',
-            ]);
+            ])->categories()->attach(3);
         }
 
         for ($i = 1; $i <= 5; $i++) {
@@ -49,7 +52,7 @@ class ProductsTableSeeder extends Seeder
                 'details' => [13, 14, 15][array_rand([13, 14, 15])] . ' inch,' . [140, 320, 980][array_rand([140, 320, 980])] . ' GB SSD, 32GB RAM, Nvidia GTX 1080 Ti SLI.',
                 'price' => 100.00,
                 'description' => 'Lorem ipsum ' . $i . ', dolor sit amet consectetur adipisicing elit. Architecto voluptatibus corrupti unde fugiat possimus ipsa accusantium magnam velit enim doloribus.',
-            ]);
+            ])->categories()->attach(4);
         }
     }
 }
