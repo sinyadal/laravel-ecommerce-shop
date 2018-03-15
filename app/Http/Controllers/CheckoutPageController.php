@@ -10,4 +10,9 @@ class CheckoutPageController extends Controller
     {
         return view('checkout');
     }
+
+    public function thankYou()
+    {
+        return view('thank-you');
+    }
 }
