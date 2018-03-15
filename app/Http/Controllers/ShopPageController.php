@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Product;
 use Illuminate\Http\Request;
 
@@ -10,6 +11,7 @@ class ShopPageController extends Controller
     public function index()
     {
         $products = Product::inRandomOrder()->take(8)->get();
+        $categories = Category::all();
         return view('shop', compact('products'));
     }
     public function show($slug)
