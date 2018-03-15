@@ -6,6 +6,7 @@ use Session;
 use Cart;
 use App\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class CartPageController extends Controller
 {
@@ -70,6 +71,13 @@ class CartPageController extends Controller
 
     public function update(Request $request, $id)
     {
+        $validator = Validator::make($request->all(), [
+            'quantity' => 'required|numeric|between:1,10'
+        ]);
+        if ($validator->fails()) {
+            Session::flash('error', 'Quantity must be between 1 and 5.');
+            return response()->json(['success' => false], 400);
+        }
         Cart::update($id, $request->quantity);
         Session::flash('success', 'Quantity updated!');
         return response()->json(['success' => true]);
