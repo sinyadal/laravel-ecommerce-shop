@@ -1,4 +1,5 @@
 @extends('layouts.app') @section('title', 'Shop') @section('content')
+
 <div class="container">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb bg-white border">
@@ -19,7 +20,7 @@
                     <ul class="list-group list-group-flush">
                         @foreach($categories as $category)
                         <a href="{{ route('shop.index', ['category' => $category->slug]) }}">
-                            <li class="list-group-item">
+                            <li class="list-group-item {{ setActiveCategory($category->slug) }}">
                                 {{ $category->name }}
                                 <span class="float-right">&rarr;</span>
                             </li>

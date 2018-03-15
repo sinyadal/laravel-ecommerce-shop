@@ -1,11 +1,4 @@
 @extends('layouts.app') @section('title', 'Cart') @section('content')
-@php
-function presentPrice($price){
-    // Format $price to ms_my currency
-    setlocale(LC_MONETARY, 'ms_MY');
-    return money_format('%i', $price) . "\n";
-}
-@endphp
 
 <div class="container">
     <nav aria-label="breadcrumb">
