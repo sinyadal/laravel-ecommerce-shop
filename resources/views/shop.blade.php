@@ -18,9 +18,10 @@
                 <div class="card-body">
                     <ul class="list-group list-group-flush">
                         @foreach($categories as $category)
-                        <a href="{{ route('shop.index', ['category' => $category->slug]) }}">
+                        <a href="{{ route('shop.index', ['category_slug' => $category->slug]) }}">
                             <li class="list-group-item">
-                                {{ $category->name }} <span class="float-right">&rarr;</span>
+                                {{ $category->name }}
+                                <span class="float-right">&rarr;</span>
                             </li>
                         </a>
                         @endforeach
@@ -31,11 +32,16 @@
 
         <div class="col-md-9">
             <div class="card mb-3">
-                <div class="card-header bg-white">Shop</div>
+                <div class="card-header bg-white"><strong>Shop - {{ $category_name }}</strong>
+                    <span class="float-right"><strong>Price: </strong>
+                        <a href="{{ route('shop.index', ['category' => request()->category, 'sort' => 'low_high']) }}">Low to High</a> |
+                        <a href="{{ route('shop.index', ['category' => request()->category, 'sort' => 'high_low']) }}">High to Low</a>                    
+                    </span>
+                </div>
                 <div class="card-body">
                     <div class="row">
 
-                        @foreach($products as $product)
+                        @forelse($products as $product)
                         <div class="col-md-4">
                             <div class="card mb-4">
                                 <a href="{{ route('shop.show', $product->slug) }}">
@@ -50,7 +56,11 @@
                                 </div>
                             </div>
                         </div>
-                        @endforeach
+                        @empty
+                        <div class="col-md-4">
+                            Dang.. no items found..
+                        </div>
+                        @endforelse
 
                     </div>
                 </div>

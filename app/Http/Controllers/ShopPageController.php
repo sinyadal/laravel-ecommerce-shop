@@ -10,18 +10,20 @@ class ShopPageController extends Controller
 {
     public function index()
     {
-        if (request()->category) {
+        if (request()->category_slug) { // If request has $category->slug passed, filter the query..
             $products = Product::with('categories')->whereHas('categories', function ($query) {
-                $query->where('slug', request()->category);
+                $query->where('slug', request()->category_slug);
             })->get();
             $categories = Category::all();
+            $category_name = $categories->where('slug', request()->category_slug)->first()->name;
         }
-        else {
+        else { // Just normal behavior
             $products = Product::inRandomOrder()->take(8)->get();
             $categories = Category::all();
+            $category_name = 'Featured';
         }
         
-        return view('shop', compact('products', 'categories'));
+        return view('shop', compact('products', 'categories', 'category_name'));
     }
     public function show($slug)
     {
