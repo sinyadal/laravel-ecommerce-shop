@@ -23,6 +23,10 @@ function presentPrice($price){
     <div class="alert alert-success" role="alert">
         {{ Session::get('success') }}
     </div>
+    @elseif(Session::has('error'))
+    <div class="alert alert-danger" role="alert">
+        {{ Session::get('error') }}
+    </div>
     @endif
 
     <div class="row">
@@ -178,11 +182,12 @@ function presentPrice($price){
                         quantity: this.value
                     })
                     .then(function (response) {
-                        console.log(response);
+                        console.log(response)
                         window.location.href = '{{ route('cart.index') }}'
                     })
                     .catch(function (error) {
-                        console.log(error);
+                        console.log(error)
+                        window.location.href = '{{ route('cart.index') }}'
                     });
                     // const id = element.getAttribute('data-id')
                     // axios.patch(`/cart/${id}`, {
