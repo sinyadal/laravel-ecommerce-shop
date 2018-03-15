@@ -18,7 +18,7 @@
                 <div class="card-body">
                     <ul class="list-group list-group-flush">
                         @foreach($categories as $category)
-                        <a href="{{ route('shop.index', ['category_slug' => $category->slug]) }}">
+                        <a href="{{ route('shop.index', ['category' => $category->slug]) }}">
                             <li class="list-group-item">
                                 {{ $category->name }}
                                 <span class="float-right">&rarr;</span>
@@ -34,8 +34,8 @@
             <div class="card mb-3">
                 <div class="card-header bg-white"><strong>Shop - {{ $category_name }}</strong>
                     <span class="float-right"><strong>Price: </strong>
-                        <a href="{{ route('shop.index', ['category' => request()->category, 'sort' => 'low_high']) }}">Low to High</a> |
-                        <a href="{{ route('shop.index', ['category' => request()->category, 'sort' => 'high_low']) }}">High to Low</a>                    
+                        <a href="{{ route('shop.index', ['category' => request()->category, 'price_sort' => 'low_high']) }}">Low to High</a> |
+                        <a href="{{ route('shop.index', ['category' => request()->category, 'price_sort' => 'high_low']) }}">High to Low</a>                    
                     </span>
                 </div>
                 <div class="card-body">
