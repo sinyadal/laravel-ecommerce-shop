@@ -67,7 +67,7 @@
                                 <input type="text" class="form-control" id="inputZip">
                             </div>
                         </div>
-                        <button class="btn btn-success btn-lg btn-block mt-3">Complete Order</button>
+                        <a href="{{ route('checkout.thank.you') }}" class="btn btn-success btn-lg btn-block mt-3">Complete Order</a>
                     </form>
 
 
