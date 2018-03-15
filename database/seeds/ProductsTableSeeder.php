@@ -12,76 +12,44 @@ class ProductsTableSeeder extends Seeder
      */
     public function run()
     {
-        Product::create([
-            'name' => 'Laptop 1',
-            'slug' => 'laptop-1',
-            'details' => 'Lorem ipsum dolor sit amet.',
-            'price' => 4401,
-            'description' => 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto voluptatibus corrupti unde fugiat possimus ipsa accusantium magnam velit enim doloribus.',
-        ]);
+        for ($i = 1; $i <= 10; $i++) {
+            Product::create([
+                'name' => 'Laptop ' . $i,
+                'slug' => 'laptop-' . $i,
+                'details' => [13, 14, 15][array_rand([13, 14, 15])] . ' inch,' . [140, 320, 980][array_rand([140, 320, 980])] . ' GB SSD, 32GB RAM, Nvidia GTX 1080 Ti SLI.',
+                'price' => 1000.00,
+                'description' => 'Lorem ipsum ' . $i . ', dolor sit amet consectetur adipisicing elit. Architecto voluptatibus corrupti unde fugiat possimus ipsa accusantium magnam velit enim doloribus.',
+            ]);
+        }
 
-        Product::create([
-            'name' => 'Laptop 2',
-            'slug' => 'laptop-2',
-            'details' => 'Lorem ipsum dolor sit amet.',
-            'price' => 4401,
-            'description' => 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto voluptatibus corrupti unde fugiat possimus ipsa accusantium magnam velit enim doloribus.',
-        ]);
+        for ($i = 1; $i <= 5; $i++) {
+            Product::create([
+                'name' => 'Desktop ' . $i,
+                'slug' => 'desktop-' . $i,
+                'details' => [13, 14, 15][array_rand([13, 14, 15])] . ' inch,' . [140, 320, 980][array_rand([140, 320, 980])] . ' GB SSD, 32GB RAM, Nvidia GTX 1080 Ti SLI.',
+                'price' => rand(1000.00, 7000.00),
+                'description' => 'Lorem ipsum ' . $i . ', dolor sit amet consectetur adipisicing elit. Architecto voluptatibus corrupti unde fugiat possimus ipsa accusantium magnam velit enim doloribus.',
+            ]);
+        }
 
-        Product::create([
-            'name' => 'Laptop 3',
-            'slug' => 'laptop-3',
-            'details' => 'Lorem ipsum dolor sit amet.',
-            'price' => 4401,
-            'description' => 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto voluptatibus corrupti unde fugiat possimus ipsa accusantium magnam velit enim doloribus.',
-        ]);
+        for ($i = 1; $i <= 5; $i++) {
+            Product::create([
+                'name' => 'Smartphone ' . $i,
+                'slug' => 'smartphone-' . $i,
+                'details' => [13, 14, 15][array_rand([13, 14, 15])] . ' inch,' . [140, 320, 980][array_rand([140, 320, 980])] . ' GB SSD, 32GB RAM, Nvidia GTX 1080 Ti SLI.',
+                'price' => rand(500.00, 1000.00),
+                'description' => 'Lorem ipsum ' . $i . ', dolor sit amet consectetur adipisicing elit. Architecto voluptatibus corrupti unde fugiat possimus ipsa accusantium magnam velit enim doloribus.',
+            ]);
+        }
 
-        Product::create([
-            'name' => 'Laptop 4',
-            'slug' => 'laptop-4',
-            'details' => 'Lorem ipsum dolor sit amet.',
-            'price' => 4401,
-            'description' => 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto voluptatibus corrupti unde fugiat possimus ipsa accusantium magnam velit enim doloribus.',
-        ]);
-
-        Product::create([
-            'name' => 'Laptop 5',
-            'slug' => 'laptop-5',
-            'details' => 'Lorem ipsum dolor sit amet.',
-            'price' => 4401,
-            'description' => 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto voluptatibus corrupti unde fugiat possimus ipsa accusantium magnam velit enim doloribus.',
-        ]);
-
-        Product::create([
-            'name' => 'Laptop 6',
-            'slug' => 'laptop-6',
-            'details' => 'Lorem ipsum dolor sit amet.',
-            'price' => 4401,
-            'description' => 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto voluptatibus corrupti unde fugiat possimus ipsa accusantium magnam velit enim doloribus.',
-        ]);
-
-        Product::create([
-            'name' => 'Laptop 7',
-            'slug' => 'laptop-7',
-            'details' => 'Lorem ipsum dolor sit amet.',
-            'price' => 4401,
-            'description' => 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto voluptatibus corrupti unde fugiat possimus ipsa accusantium magnam velit enim doloribus.',
-        ]);
-
-        Product::create([
-            'name' => 'Laptop 8',
-            'slug' => 'laptop-8',
-            'details' => 'Lorem ipsum dolor sit amet.',
-            'price' => 4401,
-            'description' => 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto voluptatibus corrupti unde fugiat possimus ipsa accusantium magnam velit enim doloribus.',
-        ]);
-
-        Product::create([
-            'name' => 'Laptop 9',
-            'slug' => 'laptop-9',
-            'details' => 'Lorem ipsum dolor sit amet.',
-            'price' => 4401,
-            'description' => 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto voluptatibus corrupti unde fugiat possimus ipsa accusantium magnam velit enim doloribus.',
-        ]);
+        for ($i = 1; $i <= 5; $i++) {
+            Product::create([
+                'name' => 'PC ' . $i,
+                'slug' => 'pc-' . $i,
+                'details' => [13, 14, 15][array_rand([13, 14, 15])] . ' inch,' . [140, 320, 980][array_rand([140, 320, 980])] . ' GB SSD, 32GB RAM, Nvidia GTX 1080 Ti SLI.',
+                'price' => 100.00,
+                'description' => 'Lorem ipsum ' . $i . ', dolor sit amet consectetur adipisicing elit. Architecto voluptatibus corrupti unde fugiat possimus ipsa accusantium magnam velit enim doloribus.',
+            ]);
+        }
     }
 }
