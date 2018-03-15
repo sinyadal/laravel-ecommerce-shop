@@ -1,4 +1,12 @@
 @extends('layouts.app') @section('title', 'Cart') @section('content')
+@php
+function presentPrice($price){
+    // Format $price to ms_my currency
+    setlocale(LC_MONETARY, 'ms_MY');
+    return money_format('%i', $price) . "\n";
+}
+@endphp
+
 <div class="container">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb bg-white border">
@@ -47,13 +55,13 @@
                             </td>
                             <td>
                                 <select data-id="{{ $cart_item->rowId }}" class="quantity custom-select" id="inlineFormCustomSelect">
-                                    <option value="1" selected>1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
+                                    @for($i = 1; $i < 10+1; $i++)
+                                    <option {{ $cart_item->qty == $i ? 'selected' : '' }}>{{ $i }}</option>
+                                    @endFor
                                 </select>
                             </td>
                             <td>
-                                <h5>{{ $cart_item->model->presentPrice() }}</h5>
+                                <h5>{{ presentPrice($cart_item->subtotal) }}</h5>
                             </td>
                         </tr>
                         @endforeach
@@ -70,13 +78,6 @@
                                         eligendi quae consectetur voluptate hic ratione, minima error totam.</p>
                                 </div>
                                 <div class="col-md-4">
-                                    @php
-                                    function presentPrice($price){
-                                        // Format $price to ms_my currency
-                                        setlocale(LC_MONETARY, 'ms_MY');
-                                        return money_format('%i', $price) . "\n";
-                                    }
-                                    @endphp
                                     <p>Subtotal: <span class="float-right"> {{ presentPrice(Cart::subtotal()) }}</span></p>
                                     <p>Tax: (6%) <span class="float-right"> {{ presentPrice(Cart::tax()) }}</span></p>
                                     <p class="font-weight-bold lead">Total: <span class="float-right"> {{ presentPrice(Cart::total()) }}</span></p>
@@ -178,6 +179,7 @@
                     })
                     .then(function (response) {
                         console.log(response);
+                        window.location.href = '{{ route('cart.index') }}'
                     })
                     .catch(function (error) {
                         console.log(error);
