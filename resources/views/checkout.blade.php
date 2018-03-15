@@ -54,9 +54,9 @@
                             <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
                         </div>
                         <div class="form-group">
-                                <label for="">Card Number</label>
-                                <input type="text" class="form-control" id="" placeholder="name@domain.com">
-                            </div>
+                            <label for="">Card Number</label>
+                            <input type="text" class="form-control" id="" placeholder="name@domain.com">
+                        </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="inputCity">Expiry</label>
@@ -96,13 +96,6 @@
                         </tbody>
                     </table>
                     <div class="card card-body bg-primary text-white">
-                        @php
-                        function presentPrice($price){
-                            // Format $price to ms_my currency
-                            setlocale(LC_MONETARY, 'ms_MY');
-                            return money_format('%i', $price) . "\n";
-                        }
-                        @endphp
                         <p>Subtotal:
                             <span class="float-right"> {{ presentPrice(Cart::subtotal()) }}</span>
                         </p>
@@ -114,6 +107,15 @@
                         </p>
                     </div>
 
+                </div>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h4>Have a coupon?</h4>
+                    <div class="card card-body bg-primary text-white">
+                        <input type="text" class="form-control" placeholder="Coupon codes..">
+                    </div>
                 </div>
             </div>
         </div>
