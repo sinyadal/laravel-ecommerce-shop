@@ -10,9 +10,18 @@ class ShopPageController extends Controller
 {
     public function index()
     {
-        $products = Product::inRandomOrder()->take(8)->get();
-        $categories = Category::all();
-        return view('shop', compact('products'));
+        if (request()->category) {
+            $products = Product::with('categories')->whereHas('categories', function ($query) {
+                $query->where('slug', request()->category);
+            })->get();
+            $categories = Category::all();
+        }
+        else {
+            $products = Product::inRandomOrder()->take(8)->get();
+            $categories = Category::all();
+        }
+        
+        return view('shop', compact('products', 'categories'));
     }
     public function show($slug)
     {
