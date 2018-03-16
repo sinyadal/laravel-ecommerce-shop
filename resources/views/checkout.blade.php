@@ -111,27 +111,32 @@
                         <p>Subtotal:
                             <span class="float-right"> {{ presentPrice(Cart::subtotal()) }}</span>
                         </p>
+                        @if(Session::has('coupon'))
                         <p>Discount ({{ Session::get('coupon')['name'] }}):
-
-                            <a href="" onclick="event.preventDefault();
+                            <a href="" style="text-white" onclick="event.preventDefault();
                                 document.getElementById('coupon-destroy-form').submit();">Remove</a>
+                            <span class="float-right"> -{{ presentPrice($discount) }}</span>
                             <form id="coupon-destroy-form" action="{{ route('coupon.destroy') }}" method="POST" style="display:none">
                                 @csrf @method('DELETE')
                             </form>
-
-                            <span class="float-right"> -{{ presentPrice(Session::get('coupon')['discount']) }}</span>
                         </p>
+                        <hr>
+                        <p>New Subtotal:
+                            <span class="float-right">{{ presentPrice($new_subtotal) }}</span>
+                        </p>
+                        @endif
                         <p>Tax (6%):
-                            <span class="float-right"> {{ presentPrice(Cart::tax()) }}</span>
+                            <span class="float-right"> {{ presentPrice($new_tax) }}</span>
                         </p>
                         <p class="font-weight-bold lead mb-0">Total:
-                            <span class="float-right"> {{ presentPrice(Cart::total()) }}</span>
+                            <span class="float-right"> {{ presentPrice($new_total) }}</span>
                         </p>
                     </div>
 
                 </div>
             </div>
 
+            @if(!Session::has('coupon'))
             <div class="card mb-4">
                 <div class="card-body">
                     <h4>Have a coupon?</h4>
@@ -143,6 +148,7 @@
                     </div>
                 </div>
             </div>
+            @endif
         </div>
     </div>
 </div>
