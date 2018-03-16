@@ -124,7 +124,7 @@
                         <p>New Subtotal:
                             <span class="float-right">{{ presentPrice($new_subtotal) }}</span>
                         </p>
-                        @endif
+                        @endif  
                         <p>Tax (6%):
                             <span class="float-right"> {{ presentPrice($new_tax) }}</span>
                         </p>
