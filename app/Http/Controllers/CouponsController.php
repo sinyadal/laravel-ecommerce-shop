@@ -25,4 +25,11 @@ class CouponsController extends Controller
         Session::flash('success', 'Coupon has been applied');
         return redirect()->route('checkout.index');
     }
+
+    public function destroy()
+    {
+        Session::forget('coupon');
+        Session::flash('success', 'Coupon has been removed');
+        return redirect()->back();
+    }
 }
