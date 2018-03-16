@@ -3,6 +3,18 @@
     <div>
         <h1 class="mb-4 mt-3">Checkout</h1>
     </div>
+
+    @if(Session::has('success'))
+    <div class="alert alert-success" role="alert">
+        {{ Session::get('success') }}
+    </div>
+    @elseif(Session::has('errors'))
+    <div class="alert alert-danger" role="alert">
+        {{ Session::get('errors') }}
+    </div>
+    @endif
+
+
     <div class="row">
         <div class="col-md-7">
             <div class="card mb-4">
@@ -99,7 +111,17 @@
                         <p>Subtotal:
                             <span class="float-right"> {{ presentPrice(Cart::subtotal()) }}</span>
                         </p>
-                        <p>Tax: (6%)
+                        <p>Discount ({{ Session::get('coupon')['name'] }}):
+
+                            <a href="" onclick="event.preventDefault();
+                                document.getElementById('coupon-destroy-form').submit();">Remove</a>
+                            <form id="coupon-destroy-form" action="{{ route('coupon.destroy') }}" method="POST" style="display:none">
+                                @csrf @method('DELETE')
+                            </form>
+
+                            <span class="float-right"> -{{ presentPrice(Session::get('coupon')['discount']) }}</span>
+                        </p>
+                        <p>Tax (6%):
                             <span class="float-right"> {{ presentPrice(Cart::tax()) }}</span>
                         </p>
                         <p class="font-weight-bold lead mb-0">Total:
@@ -114,11 +136,15 @@
                 <div class="card-body">
                     <h4>Have a coupon?</h4>
                     <div class="card card-body bg-primary text-white">
-                        <input type="text" class="form-control" placeholder="Coupon codes..">
+                        <form action="{{ route('coupon.store') }}" method="POST">
+                            @csrf
+                            <input type="text" class="form-control" name="coupon_code" id="coupon_code" placeholder="Coupon codes..">
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 @endsection

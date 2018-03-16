@@ -34,6 +34,9 @@ Route::get('/cart/checkout', 'CheckoutPageController@index')->name('checkout.ind
 
 Route::get('/cart/checkout/thank-you', 'CheckoutPageController@thankYou')->name('checkout.thank.you');
 
+Route::post('/cart/checkout/coupon/store', 'CouponsController@store')->name('coupon.store');
+Route::delete('/cart/checkout/coupon/destroy', 'CouponsController@destroy')->name('coupon.destroy');
+
 Route::get('/home', 'DashboardController@index')->name('dashboard.index');
 
 // Route::get('/admin/tag/', 'TagController@index')                                    ->name('tag.index');

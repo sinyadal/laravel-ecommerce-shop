@@ -75,7 +75,7 @@ class CartPageController extends Controller
             'quantity' => 'required|numeric|between:1,10'
         ]);
         if ($validator->fails()) {
-            Session::flash('error', 'Quantity must be between 1 and 5.');
+            Session::flash('errors', 'Quantity must be between 1 and 5.');
             return response()->json(['success' => false], 400);
         }
         Cart::update($id, $request->quantity);
